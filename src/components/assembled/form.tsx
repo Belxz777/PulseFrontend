@@ -12,7 +12,7 @@ function Form({ }: Props) {
 
     const schema = z.object({
         login: z.string().min(6),
-        password: z.string().min(6)
+        password: z.string().min(1)
     })
 
     const [login, setLogin] = useState<string>('')
