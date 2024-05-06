@@ -1,3 +1,4 @@
+'use client'
 import {AD, ADCancel, ADContent, ADD, ADHeader, ADTitle, ADTrigger} from "@/components/ui/alert-dialog"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut} from "@/components/ui/command"
@@ -5,56 +6,62 @@ import {Popover, PopoverContent, PopoverTrigger,} from "@/components/ui/popover"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button, buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import authUser from "@/components/server/Auth"
 
 
 export default function Home() {
+  const [userData, setUserData] = useState<any>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await authUser();
+        console.log(response);
+        setUserData(response.userData);
+        /*
+        19:36:02.761 | next.js browser	    
+  {
+    message: 'Ты аутетифицирован',
+    token: 
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjozLCJleHAiOjE3MTI5MzU5NjYsImlhdCI6MTcxMjA3MTk2Nn0.WPymFBcXtWWb4LsdtKtalu0Cf6v4FemurDGX6YrE-2g',
+    userData: {
+      id: 3,
+      job_title_id: 6,
+      age: 35,
+      first_name: 'Степанов',
+      last_name: 'Олег',
+      father_name: 'Дмитреевич',
+      position: 'работник',
+      login: 'dmitry321'
+    }
+  }
+        */
+      } catch (error) {
+        alert(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-      <div className="all">
-        <div className="block1">
-          <h1 className="text">Трудозатраты</h1>
-          <ul>
-            <li className="li_main">Моя статистика</li>
-            <Link href={"../../../labor-costs/"}><li>Учет трудозатрат</li></Link>
-          </ul>
-        </div>
-
-      <div className="col2">
-        <div className="block2">
-
-
-        <Popover >
-  <PopoverTrigger className="input"></PopoverTrigger>
-  <PopoverContent className="input"><Command>
-  <CommandInput/>
-  <CommandList>
-    <CommandEmpty>Ничего не найдено</CommandEmpty>
-    <CommandGroup heading="Я...">
-    <Button className="CommandItem" asChild><Link href={"../../../my-stat/"}><CommandItem>Сотрудник</CommandItem></Link></Button>
-    <Button className="CommandItem" asChild><Link href={"../../../project/"}><CommandItem>Руководитель</CommandItem></Link></Button>
-    <Button className="CommandItem" asChild><Link href={"../../../.../"}><CommandItem>Администратор</CommandItem></Link></Button>
-    </CommandGroup>
-    <CommandGroup heading="Страницы">
-    <Button className="CommandItem" asChild><Link href={"../../../my-stat/"}><CommandItem>Моя статистика</CommandItem></Link></Button>
-    <Button className="CommandItem" asChild><Link href={"../../../labor-costs/"}><CommandItem>Учет трудозатрат</CommandItem></Link></Button>
-    </CommandGroup>
-    <CommandSeparator />
-  </CommandList>
-</Command>
-</PopoverContent>
-</Popover>
-
 
 
 
         <div className="profil_block">
-        <Avatar className="Avatar">
-          <AvatarImage src="https://avatars.githubusercontent.com/u/124599?v=4" />
-          <AvatarFallback>II</AvatarFallback>
-        </Avatar>
+          {
+            !userData ? 
+            <Avatar className="Avatar">
+            <AvatarImage src="https://avatars.githubusercontent.com/u/124599?v=4" />
+            <AvatarFallback>II</AvatarFallback>
+          </Avatar>
+          : 
+          null
+          }
         <div>
-        <h2>Ишматов Тимофей Ильич</h2>
+          I
+        <h2>{userData ?             <h2>{userData. first_name }  {userData. last_name } </h2> :null}</h2>
         <h2>Программист</h2>
-        </div></div></div>
+        </div>
 
         <div className="block3">
         <h1 className="text">Мои задачи:</h1>
@@ -90,13 +97,12 @@ export default function Home() {
               
               <AD><ADTrigger className="ADTrigger">
               <h1>Задача:  <i>Разработать стратегию продвижения бренда</i></h1>
-              <h1>Проект:<i>Продвижение бренда "SuperBrand"</i></h1>
               <h1>Время: <i>334 часа</i></h1></ADTrigger>
       <ADContent className="ADContent"> 
       <ADHeader className="ADHeader"><ADCancel className="ADCancel">×</ADCancel><ADTitle className="label">Задача: <b> Разработать стратегию продвижения бренда</b></ADTitle></ADHeader>
       <ADD className="ADD">
         Описание: Создание эффективной стратегии продвижения бренда является ключевым фактором для достижения успеха в современном бизнесе. Необходимо провести анализ целевой аудитории, определить конкурентные преимущества бренда и разработать план действий, который позволит привлечь и удержать клиентов.
-      </ADD><ADD className="ADD"> Проект: <b>Продвижение бренда "SuperBrand"</b>
+      </ADD><ADD className="ADD"> Проект: <b></b>
       </ADD><ADD className="ADD"> Время на выполнения: <b>336 часа</b></ADD>
               </ADContent></AD>
               </ScrollArea>
@@ -193,13 +199,5 @@ export default function Home() {
 
       </div>
 
-
-
-
-
-
-
-
-      </div>
   );
 }

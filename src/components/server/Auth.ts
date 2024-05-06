@@ -4,11 +4,10 @@ import { host } from './types';
 async function authUser(): Promise<OutCome > {
     const cookieStore = cookies();
     const jwt = cookieStore.get('jwt')?.value
-    console.log(jwt);
     if(!jwt){
         throw new Error('No token provided')
     }
-    const res = await fetch(`${host}/api/users/auth`,{
+    const res = await fetch(`${host}users/auth`,{
         credentials:'include',
         headers:{
             Cookie: `jwt=${jwt}`

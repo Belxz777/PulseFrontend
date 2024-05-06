@@ -11,8 +11,8 @@ message: string,
 token: string
 }
    async function sendUserLoginData(data: LoginData): Promise<OutPut> {
-
-    const res = await fetch(`${host}/api/users/login`, {
+console.log(host)
+    const res = await fetch(`${host}users/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -25,7 +25,7 @@ token: string
 
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
+        throw new Error('Ошибка при входе попробуйте еще раз'); 
     }
 
     const cookiesApi = cookies()

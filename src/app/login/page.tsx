@@ -1,7 +1,8 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { FiAlignRight, FiCornerUpLeft, FiHelpCircle, FiUserPlus } from "react-icons/fi";
 import Form from "@/components/assembled/form";
-import Menu from "@/staff/Menu";
+import Menu from "@/svg/Menu";
+import Link from "next/link";
 export default function Home() {
   return (
   <>
@@ -12,7 +13,7 @@ export default function Home() {
     <DropdownMenuLabel>Страницы</DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuItem>      Главная</DropdownMenuItem>
-    <DropdownMenuItem>Регистация </DropdownMenuItem>
+    <DropdownMenuItem><Link href='/registration'>Регистрация</Link></DropdownMenuItem>
     <DropdownMenuItem>Часто задаваемые вопросы      <span><FiHelpCircle /></span></DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>

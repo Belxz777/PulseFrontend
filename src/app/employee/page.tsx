@@ -27,7 +27,7 @@ export default function Home() {
 
         <Popover>
   <PopoverTrigger className="input"></PopoverTrigger>
-  <PopoverContent className="input"><Command>
+  <PopoverContent className="input" ><Command>
   <CommandInput/>
   <CommandList>
   <CommandEmpty>Ничего не найдено</CommandEmpty>

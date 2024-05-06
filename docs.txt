@@ -1,0 +1,146 @@
+для получения всех тасок по проекту вводим просто project id 
+ GET http://127.0.0.1:8000/api/task_for_project/1
+ OutPut:
+[
+    {
+        "id": 1,
+        "project_id": 1,
+        "name": "Создание  документации дрона",
+        "description": "Документация дрона ms3232-qe00 по тех списку",
+        "daysToAccomplish": 5,
+        "stageAt": "O",
+        "priority": 7,
+        "workers": [
+            1,
+            2
+        ]
+    },
+    {
+        "id": 2,
+        "project_id": 1,
+        "name": "Для всеfsdх",
+        "description": "Сделать первую хтмл страникdsfу",
+        "daysToAccomplish": 21,
+        "stageAt": "R",
+        "priority": 2,
+        "workers": [
+            1,
+            3
+        ]
+    }
+]
+
+
+Для добавления таски в проект просто кидаем 
+ POST http://127.0.0.1:8000/api/task/
+ Body:
+ {
+    "project_id":2,
+    "name":"Для всеfsdх",
+    "description":"Сделать первую хтмл страникdsfу",   
+    "daysToAccomplish":21,
+    "stageAt":"R",
+    "priority":2,
+    "workers":[3,1] id рабротников над таской
+
+}
+http://127.0.0.1:8000/api/all_user_task/2
+ выводит все таски рабочего 
+ пример
+ [
+    {
+        "id": 1,
+        "project_id": 1,
+        "name": "Создание  документации дрона",
+        "description": "Документация дрона ms3232-qe00 по тех списку",
+        "daysToAccomplish": 5,
+        "stageAt": "O",
+        "priority": 7,
+        "workers": [
+            1,
+            2
+        ]
+    },
+    {
+        "id": 2,
+        "project_id": 1,
+        "name": "Для всеfsdх",
+        "description": "Сделать первую хтмл страникdsfу",
+        "daysToAccomplish": 21,
+        "stageAt": "R",
+        "priority": 2,
+        "workers": [
+            1,
+            3
+        ]
+    },
+    {
+        "id": 3,
+        "project_id": 2,
+        "name": "Для всеfsdх",
+        "description": "Сделать первую хтмл страникdsfу",
+        "daysToAccomplish": 21,
+        "stageAt": "R",
+        "priority": 2,
+        "workers": [
+            1,
+            3
+        ]
+    }
+]
+
+http://127.0.0.1:8000/api/all_user_projects/3
+ выводит все проекты usera в которых он есть
+ [
+    {
+        "id": 1,
+        "name": "Создание  документации дрона",
+        "description": "Документация дрона ms3232-qe00 по тех списку",
+        "todo": [
+            1
+        ],
+        "members": [
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Создание API",
+        "description": "Созадание mvp на бекенде",
+        "todo": [],
+        "members": [
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Создание API",
+        "description": "Созадание mvp на бекенде",
+        "todo": [],
+        "members": [
+            1,
+            2,
+            3
+        ]
+    }
+]
+http://127.0.0.1:8000/api/user_worktime/1
+ выводит всё рабочее пользователя
+
+ {
+    "workHours": 47
+}
+если что вот localstorage 
+ {
+    id: 3,
+    job_title_id: 6,
+    age: 35,
+    first_name: 'Степанов',
+    last_name: 'Олег',
+    father_name: 'Дмитреевич',
+    position: 'работник'
+  }

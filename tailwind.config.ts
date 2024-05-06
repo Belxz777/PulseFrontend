@@ -18,6 +18,35 @@ const config = {
       },
     },
     extend: {
+      backgroundColor:{
+        scin:{
+          base:'var(--tg-theme-bg-color)'
+        },
+        hint:{
+          base:'var(--tg-theme-hint-color)'
+        },
+        button:{
+          base:'var(--tg-theme-button-color)'
+        },
+        secodary:{
+          base:' var(--tg-theme-secondary-bg-color);'
+        }
+       },
+       textColor:{
+        scin:{
+          base:'var(--tg-theme-text-color)'
+        },
+        link:{
+          base: 'var(--tg-theme-link-color)'
+        },
+        button:{
+          base:'var(--tg-theme-button-text-color)'
+        }
+    
+       },
+    borderColor:{
+      base:' var(--tg-theme-link-color)'
+    },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

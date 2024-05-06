@@ -1,21 +1,19 @@
 "use server "
-async function registerUser(username: string, email: string, password: string, avatar: File | null): Promise<any> {
-    if (!avatar) {
-        return "Avatar is required"
+
+import { host } from "./types";
+
+async function registerUser(userData: createUser): Promise<any> {
+    if (!userData) {
+        throw new Error('User data is required');
     }
 
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('avatar', avatar);
-
-    const response = await fetch(`${process.env.HOST}/api/users/create`, {
+    const response = await fetch(`${host}users/create`, {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
     });
-    console.log(response)
-console.log(response.body)
     return response.json();
 }
 
